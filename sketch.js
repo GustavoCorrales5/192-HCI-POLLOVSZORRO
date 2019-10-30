@@ -117,67 +117,101 @@ function draw() {
     //izquierda
     
     
-    
-    for(let i = 0; i < tracker[0]; i++) {
       
-      image(imgConejo,width/2-300 +i*50, height/2+125);
-    }
-    
-    if(tracker[2]==1 && boteIN==true){
+      for(let i = 0; i < tracker[0]; i++) {
+        
+        image(imgConejo,width/2-300 +i*50, height/2+125);
+      }
+      
+      
+      for(let i = 0; i < 3 - tracker[0]; i++) {
+        image(imgConejo,width/2+300 +i*50, height/2+125); 
+      }
+      
+      for(let j = 0; j < tracker[1]; j++) {
+        // CANNIBALS
+        image(imgZorro, 280+j*60, height/2+130);
+      }
+      
+      
+      j = 0;
+      
+      for(let j = 0; j < 3 - tracker[1]; j++) {
+        // CANNIBALS
+        //derecha
+        image(imgZorro,980+j*60, height/2+130);
+      }
+    /*
+     if(tracker[2]==1 && boteIN==true){
       
       console.log(pollocount+" "+zorrocount);
       if(pollocount==1 && zorrocount==1){
         console.log('entre gonorreas');
         image(imgConejo,620, 420);
         image(imgZorro,720, 420);
+        
+      
+        
       } else if(pollocount==1){  
         image(imgConejo,620, 420);
+        
+     
       } else if(pollocount==2){
         image(imgConejo,620, 420);
         image(imgConejo,620+pollocount*50, 420);
+     
+        
       }  else if(zorrocount==1){
         image(imgZorro,620, 420);
+    
       } else if(zorrocount==2){
         image(imgZorro,620, 420);
         image(imgZorro,620+zorrocount*50, 420);
         console.log('xdxdxd');
+        
+      
       }
       
     } else if(tracker[2]==0 && boteIN==true){
-      if(pollocount==1 && zorrocount==1){
-        image(imgConejo,788, 420);
-        image(imgZorro,888, 420);
-      } else if(pollocount==1){  
-        image(imgConejo,788, 420);
-      } else if(pollocount==2){
-        image(imgConejo,788, 420);
-        image(imgConejo,788+pollocount*50, 420);
-      }  else if(zorrocount==1){
-        image(imgZorro,788, 420);
-      } else if(zorrocount==2){
 
-        image(imgZorro,788, 420);
-        image(imgZorro,788+zorrocount*50, 420);
-      }
+    
+    if(pollocount==1 && zorrocount==1){
+      image(imgConejo,788, 420);
+      image(imgZorro,888, 420);
+      
+      console.log('holaaaaaaaaaaa');
+     
+      
+      
+    } else if(pollocount==1){  
+      image(imgConejo,788, 420);
+      
+      
+    } else if(pollocount==2){
+      image(imgConejo,788, 420);
+      image(imgConejo,788+pollocount*50, 420);
+
+    }  else if(zorrocount==1){
+      image(imgZorro,788, 420);
+      
+    
+     
+      image(imgZorro,980, height/2+130);
+
+
+
+    } else if(zorrocount==2){
+      
+      image(imgZorro,788, 420);
+      image(imgZorro,788+zorrocount*50, 420);
+
+      
+      
+      
     }
-    
-    
-      for(let i = 0; i < 3 - tracker[0]; i++) {
-        image(imgConejo,width/2+300 +i*50, height/2+125); 
-      }
- 
-    for(let j = 0; j < tracker[1]; j++) {
-      // CANNIBALS
-      image(imgZorro, 280+j*60, height/2+130);
-    }
-    
-    
-    j = 0;
-    for(let j = 0; j < 3 - tracker[1]; j++) {
-      // CANNIBALS
-      //derecha
-      image(imgZorro,980+j*60, height/2+130);
-    }
+  }*/
+  
+  
   
   image(imgBarca,x, height/2 +180);
   
