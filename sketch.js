@@ -36,20 +36,30 @@ let cora;
 let espacioVida;
 let imgResumen;
 
-function  preload(){
+let animacionMuertePollo;
+let numeroAnimacionPollo;
 
+function  preload(){
+  
+  numeroAnimacionPollo=0;
   imgBarca= loadImage('/img/barca.png');
   imgConejo= loadImage('/img/pollo.png');
   imgZorro= loadImage('/img/zorro.png');  
   imgFondo= loadImage('/img/fondo.png');
   imgInstruc= loadImage('/img/instruc.png');
-   imgWin=loadImage('/img/win.png')
+  imgWin=loadImage('/img/win.png')
   imgLose=loadImage('/img/lose.png');
   cora=loadImage('/img/cora.png');
   espacioVida=loadImage('/img/espacioVida.png');
   imgResumen=loadImage('/img/resultados.png');
   imgInicio=loadImage('/img/inicio.png');
-
+  
+  
+  
+  animacionMuertePollo=new Array(175);
+  for(var i=1;i<=175;i++){
+    animacionMuertePollo[i-1]=loadImage('/img/'+i+'.png');
+  }
 }
 
 function setup() {
@@ -68,48 +78,48 @@ function setup() {
   console.log(killedState);
   
   imageMode(CENTER);
-
+  
   pantalla=1;
 }
 function draw() {
-
+  
   console.log('estoy en pantalla: '+pantalla);
   switch(pantalla){
-
+    
     case 0:
     
     image(imgInstruc,width/2,height/2);
-
+    
     break;
-
+    
     case 1:
     image(imgFondo,width/2,height/2);
-
+    
     image(espacioVida,width-400,100);
     for(let h=0; h<intentos; h++){
       image(cora,(width-400)+ h*40, 100);
     }
-
+    
     // set boat position
     let x;
     if(tracker[2] == 1) {
-       x = windowWidth / 2 - 80;
+      x = windowWidth / 2 - 80;
     }else if(tracker[2]==0) {
-       x = windowWidth / 2 + 80;
+      x = windowWidth / 2 + 80;
     }
     //Barca
     image(imgBarca,x, height/2 +180);
-  
-  
+    
+    
     // MISSIONARIES
     //izquierda
     for(let i = 0; i < tracker[0]; i++) {
-    
-       image(imgConejo,width/2-300 +i*50, height/2+125);
+      
+      image(imgConejo,width/2-300 +i*50, height/2+125);
     }
     for(let i = 0; i < 3 - tracker[0]; i++) {
-     
-     image(imgConejo,width/2+300 +i*50, height/2+125); 
+      
+      image(imgConejo,width/2+300 +i*50, height/2+125); 
     }
     for(let j = 0; j < tracker[1]; j++) {
       // CANNIBALS
@@ -122,10 +132,21 @@ function draw() {
       //derecha
       image(imgZorro,980+j*60, height/2+130);
     }
-
+    
     break;
     case 2:
     image(imgLose,width/2,height/2);
+    for(var i=0;i<animacionMuertePollo.length;i++){
+    }
+    
+    if(numeroAnimacionPollo<=175){
+      animacionMuertePollo[numeroAnimacionPollo].resize(400,100);
+      image(animacionMuertePollo[numeroAnimacionPollo],width/2+30,height/2-150);
+      numeroAnimacionPollo+=15;
+    } else{
+      numeroAnimacionPollo=0;
+    }
+    
     break;
     case 3:
     image(imgWin,width/2,height/2);
@@ -134,57 +155,57 @@ function draw() {
     image(imgResumen,width/2,height/2);
     break;
     case 5:
-      image(imgInicio,width/2,height/2);
-      break;
-
-  }
-
-  
+    image(imgInicio,width/2,height/2);
+    break;
     
+  }
+  
+  
+  
 }
 
 function mouseClicked(){
- console.log(mouseX +","+ mouseY);
+  console.log(mouseX +","+ mouseY);
   if(pantalla == 0 && mouseX >= 689 && mouseX< 815 && mouseY >=550 && mouseY< 587 ){
     
     pantalla=1;
   }
- if(pantalla==2 && mouseY>=389 && mouseY<=429 && mouseX>697 && mouseX<832){
-  pantalla=1; 
- }
- if(pantalla==3 && mouseY>=389 && mouseY<=429 && mouseX>697 && mouseX<832){
-   //EL PARTICIPANTE GANO SI ESTA EN ESTA PANTALLA Y SE LE ASIGNA UN PUNTAJE DEPENDIENDO CUANTOS INTENTOS UTILIZO
-   if(intentos==3){
-    puntajeAsignado=100;
-  }else if(intentos==2){
-    puntajeAsignado=75;
-  } else if(intentos==1){
-    puntajeAsignado=50;
+  if(pantalla==2 && mouseY>=389 && mouseY<=429 && mouseX>697 && mouseX<832){
+    pantalla=1; 
   }
-//CAMBIAR DE PANTALLA 
-  console.log('el puntaje asignado es: '+puntajeAsignado);
-
- }
-
- if(pantalla==4 && mouseY>=389 && mouseY<=429 && mouseX>697 && mouseX<832){
+  if(pantalla==3 && mouseY>=389 && mouseY<=429 && mouseX>697 && mouseX<832){
+    //EL PARTICIPANTE GANO SI ESTA EN ESTA PANTALLA Y SE LE ASIGNA UN PUNTAJE DEPENDIENDO CUANTOS INTENTOS UTILIZO
+    if(intentos==3){
+      puntajeAsignado=100;
+    }else if(intentos==2){
+      puntajeAsignado=75;
+    } else if(intentos==1){
+      puntajeAsignado=50;
+    }
+    //CAMBIAR DE PANTALLA 
+    console.log('el puntaje asignado es: '+puntajeAsignado);
     
-  //EL USUARIO PERDIO SI ESTA EN ESTA PANTALLA, PONER AQUI EL CAMBIO DE GAME
- 
-}
-
-if(pantalla==5){
-  pantalla=0;
-}
-
-
+  }
+  
+  if(pantalla==4 && mouseY>=389 && mouseY<=429 && mouseX>697 && mouseX<832){
+    
+    //EL USUARIO PERDIO SI ESTA EN ESTA PANTALLA, PONER AQUI EL CAMBIO DE GAME
+    
+  }
+  
+  if(pantalla==5){
+    pantalla=0;
+  }
+  
+  
 }
 
 // Generate new states from parent state.
 function applyOperation(tempState) {
-    if(tempState.visited === true) {
-      killedState.push(state[state.length - 1]);
-      state.splice(state.length - 1, 1);
-    }else {
+  if(tempState.visited === true) {
+    killedState.push(state[state.length - 1]);
+    state.splice(state.length - 1, 1);
+  }else {
     tempState.visited = true;
     boatPosition = tempState.value[2];
     // If Boat is at the left bank

@@ -67,6 +67,7 @@ function applyMove(M, C) {
 
                     //Logica de cambiar pantalla
                     intentos -= 1;
+
                     if (intentos <= 0) {
                               pantalla=4;
 
@@ -76,6 +77,7 @@ function applyMove(M, C) {
                     //  location.reload();
                     console.log("GAME OVER");
                     pantalla=2;
+                    
                     }
                 }
             }
