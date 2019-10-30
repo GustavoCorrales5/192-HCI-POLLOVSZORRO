@@ -2,6 +2,7 @@ let missionaryCount;
 let cannibalCount;
 let tracker = [3, 3, 1];
 let parent;
+let tracker2= tracker;
 
 
 document.querySelector('#oneMissionary').addEventListener('click', () => play(1, 0));
@@ -20,7 +21,12 @@ buttonGo.style.visibility='hidden';
 const play = (M, C) => {
     missionaryCount = M;
     cannibalCount = C;
+    pollocount=M;
+    zorrocount=C;
+   
     buttonGo.style.visibility='visible';
+    boteIN=true;
+
  //   applyMove(missionaryCount, cannibalCount);
    
 }
@@ -30,6 +36,8 @@ function selectGo(){
     buttonGo.addEventListener('click', function(){
         applyMove(missionaryCount, cannibalCount);
         buttonGo.style.visibility='hidden';
+        boteIN=false;
+
 
     });
     
@@ -45,8 +53,8 @@ function applyMove(M, C) {
             if (M > tracker[0] || C > tracker[1]) {
                 console.log("Invalid Move");
             } else {
-                tracker[0] = tracker[0] - M;
-                tracker[1] = tracker[1] - C;
+               tracker[0] = tracker[0] - M;
+               tracker[1] = tracker[1] - C;
                 if (tracker[2] == 1 ? tracker[2] = 0 : tracker[2] = 1);
                 console.log(tracker);
                 if (tracker[0] == 0 && tracker[1] == 0 && tracker[2] == 0) {
@@ -62,8 +70,7 @@ function applyMove(M, C) {
                     console.log("Acceptable State");
                 } else {
                     tracker = [3, 3, 1];
-
-                    console.log("GAME OVER");
+                    console.log(    "GAME OVER");
 
                     //Logica de cambiar pantalla
                     intentos -= 1;

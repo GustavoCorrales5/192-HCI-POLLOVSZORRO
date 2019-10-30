@@ -38,6 +38,9 @@ let imgResumen;
 
 let animacionMuertePollo;
 let numeroAnimacionPollo;
+let boteIN=false;
+let zorrocount;
+let pollocount;
 
 function  preload(){
   
@@ -108,23 +111,66 @@ function draw() {
       x = windowWidth / 2 + 80;
     }
     //Barca
-    image(imgBarca,x, height/2 +180);
     
     
     // MISSIONARIES
     //izquierda
+    
+    
+    
     for(let i = 0; i < tracker[0]; i++) {
       
       image(imgConejo,width/2-300 +i*50, height/2+125);
     }
-    for(let i = 0; i < 3 - tracker[0]; i++) {
+    
+    if(tracker[2]==1 && boteIN==true){
       
-      image(imgConejo,width/2+300 +i*50, height/2+125); 
+      console.log(pollocount+" "+zorrocount);
+      if(pollocount==1 && zorrocount==1){
+        console.log('entre gonorreas');
+        image(imgConejo,620, 420);
+        image(imgZorro,720, 420);
+      } else if(pollocount==1){  
+        image(imgConejo,620, 420);
+      } else if(pollocount==2){
+        image(imgConejo,620, 420);
+        image(imgConejo,620+pollocount*50, 420);
+      }  else if(zorrocount==1){
+        image(imgZorro,620, 420);
+      } else if(zorrocount==2){
+        image(imgZorro,620, 420);
+        image(imgZorro,620+zorrocount*50, 420);
+        console.log('xdxdxd');
+      }
+      
+    } else if(tracker[2]==0 && boteIN==true){
+      if(pollocount==1 && zorrocount==1){
+        image(imgConejo,788, 420);
+        image(imgZorro,888, 420);
+      } else if(pollocount==1){  
+        image(imgConejo,788, 420);
+      } else if(pollocount==2){
+        image(imgConejo,788, 420);
+        image(imgConejo,788+pollocount*50, 420);
+      }  else if(zorrocount==1){
+        image(imgZorro,788, 420);
+      } else if(zorrocount==2){
+
+        image(imgZorro,788, 420);
+        image(imgZorro,788+zorrocount*50, 420);
+      }
     }
+    
+    
+      for(let i = 0; i < 3 - tracker[0]; i++) {
+        image(imgConejo,width/2+300 +i*50, height/2+125); 
+      }
+ 
     for(let j = 0; j < tracker[1]; j++) {
       // CANNIBALS
       image(imgZorro, 280+j*60, height/2+130);
     }
+    
     
     j = 0;
     for(let j = 0; j < 3 - tracker[1]; j++) {
@@ -132,36 +178,38 @@ function draw() {
       //derecha
       image(imgZorro,980+j*60, height/2+130);
     }
-    
-    break;
-    case 2:
-    image(imgLose,width/2,height/2);
-    for(var i=0;i<animacionMuertePollo.length;i++){
-    }
-    
-    if(numeroAnimacionPollo<=175){
-      animacionMuertePollo[numeroAnimacionPollo].resize(400,100);
-      image(animacionMuertePollo[numeroAnimacionPollo],width/2+30,height/2-150);
-      numeroAnimacionPollo+=15;
-    } else{
-      numeroAnimacionPollo=0;
-    }
-    
-    break;
-    case 3:
-    image(imgWin,width/2,height/2);
-    break;
-    case 4:
-    image(imgResumen,width/2,height/2);
-    break;
-    case 5:
-    image(imgInicio,width/2,height/2);
-    break;
-    
+  
+  image(imgBarca,x, height/2 +180);
+  
+  break;
+  case 2:
+  image(imgLose,width/2,height/2);
+  for(var i=0;i<animacionMuertePollo.length;i++){
   }
   
+  if(numeroAnimacionPollo<=175){
+    animacionMuertePollo[numeroAnimacionPollo].resize(400,100);
+    image(animacionMuertePollo[numeroAnimacionPollo],width/2+30,height/2-150);
+    numeroAnimacionPollo+=15;
+  } else{
+    numeroAnimacionPollo=0;
+  }
   
+  break;
+  case 3:
+  image(imgWin,width/2,height/2);
+  break;
+  case 4:
+  image(imgResumen,width/2,height/2);
+  break;
+  case 5:
+  image(imgInicio,width/2,height/2);
+  break;
   
+}
+
+
+
 }
 
 function mouseClicked(){
